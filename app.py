@@ -25,7 +25,7 @@ if st.sidebar.button("🚀 Generează Raportul Executiv Final", type="primary"):
             df_bal = pd.read_excel(f_bal_upload)
             df_ev = pd.read_excel(f_ev_upload)
             df_fact = pd.read_excel(f_fact_upload) if f_fact_upload else pd.DataFrame()
-            df_munca = pd.read_excel(f_munca_upload).dropna(subset=['Salariat']) if f_munca_upload else pd.DataFrame()
+           df_munca = pd.read_excel(f_munca_upload, engine='openpyxl').dropna(subset=['Salariat']) if f_munca_upload else pd.DataFrame()
 
             df_ev['Tip Eveniment'] = df_ev['Tip Eveniment'].fillna('Fara contract')
             df_ev['Salon'] = df_ev['Salon'].fillna('Necunoscut')
