@@ -26,13 +26,13 @@ if st.sidebar.button("🚀 Generează Raportul Executiv Final", type="primary"):
             df_ev = pd.read_excel(f_ev_upload)
             df_fact = pd.read_excel(f_fact_upload) if f_fact_upload else pd.DataFrame()
             try:
-    if f_munca_upload:
-        df_munca = pd.read_excel(f_munca_upload, engine='openpyxl').dropna(subset=['Salariat'])
-    else:
-        df_munca = pd.DataFrame()
-except Exception:
-    df_munca = pd.DataFrame()
-    st.warning("Atenție: Fișierul de la Contracte de Muncă / Salarii nu a putut fi citit corect. Verifică dacă este un fișier Excel valid.")
+               if f_munca_upload:
+                  df_munca = pd.read_excel(f_munca_upload, engine='openpyxl').dropna(subset=['Salariat'])
+               else:
+                  df_munca = pd.DataFrame()
+            except Exception:
+                  df_munca = pd.DataFrame()
+                  st.warning("Atenție: Fișierul de la Contracte de Muncă / Salarii nu a putut fi citit corect. Verifică dacă este un fișier Excel valid.")
 
             df_ev['Tip Eveniment'] = df_ev['Tip Eveniment'].fillna('Fara contract')
             df_ev['Salon'] = df_ev['Salon'].fillna('Necunoscut')
